@@ -2,13 +2,13 @@
 
 class application::config {        
 	exec { "gitclone-db":
-		command => "git clone $application_gitclone_db $application_gitclone_db_destination",
+		command => "git clone $application_drupal_gitclone_db $application_drupal_gitclone_db_destination",
 		timeout => 3600, 
         logoutput=> on_failure, 
 		before => Exec ["db-restore"]
 }
 	exec { "gitclone-application":
-		command => "git clone $application_gitclone_application $application_gitclone_application_destination",
+		command => "git clone $application_drupal_gitclone_application $application_drupal_gitclone_application_destination",
 		require => Exec ["gitclone-db"]
 }
 	exec { "db-create":
@@ -24,7 +24,7 @@ class application::config {
         	require => Package["php5"]
 }
 	exec { "symlink-for-files-folder":
-		command => "ln -s $application_symlink_files_folder_source $application_symlink_files_folder_destination",
+		command => "ln -s $application_drupal_symlink_files_folder_source $application_drupal_symlink_files_folder_destination",
 		require => Exec["gitclone-application"],
 }
 	exec { "edit-apache2-conf-file":
