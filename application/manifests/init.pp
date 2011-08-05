@@ -1,5 +1,4 @@
 # This is a core file of application module
-
 class application {
-	include application::configuration
+	include application::install
 }
