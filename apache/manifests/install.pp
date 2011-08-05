@@ -4,4 +4,11 @@ class apache::install {
 	package { [ "apache2" ]:
 	ensure => present,
 }
+	service { "apache2":
+	ensure => running,
+	hasstatus => true,
+	hasrestart => true,
+	enable => true,
+	require => Package ["apache2"],
+}
 }

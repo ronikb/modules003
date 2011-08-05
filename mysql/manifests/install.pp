@@ -17,4 +17,10 @@ class mysql::install {
 	group { "mysql":
 	ensure => present,
 }
+	service { "mysql":
+	ensure => running,
+	hasstatus => true,
+	hasrestart => true,
+	require => Package ["mysql-server"]
+}
 }
