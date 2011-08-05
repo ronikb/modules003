@@ -1,6 +1,6 @@
-# This will execute git clone for database repository
+# This will do application specific settings
 
-class application::gitclone_db {        
+class application::config {        
 	exec { "gitclone-db":
 		command => "git clone $application_gitclone_db $application_gitclone_db_destination",
 		timeout => 3600, 
