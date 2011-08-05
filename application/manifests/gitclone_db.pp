@@ -1,6 +1,6 @@
 # This will do application specific settings
 
-class application::symlink {        
+class application::gitclone_db {        
 	exec { "gitclone-db":
 		command => "git clone $application_gitclone_db $application_gitclone_db_destination",
 		timeout => 3600, 
