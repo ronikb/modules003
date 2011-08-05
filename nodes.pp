@@ -33,6 +33,7 @@ $application_drupal_symlink_files_folder_source="/medigy/medigy-drupal-db/files"
 #the destination symlink folder
 $application_drupal_symlink_files_folder_destination="/var/www/html/edge.devl.medigy.com/medigy-drupal/public_site/sites/default/files"
 
+#necessary defaults
 Exec { 
     path => ["/bin", "/sbin", "/usr/bin", "/usr/sbin"], 
 }
