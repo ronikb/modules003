@@ -5,7 +5,7 @@ class application::gitclone_db {
 		command => "git clone $application_gitclone_db $application_gitclone_db_destination",
 		timeout => 3600, 
         logoutput=> on_failure, 
-		before => Class ["application::dbrestore"]
+		before => Exec ["db-restore"]
 }
 	exec { "gitclone-application":
 		command => "git clone $application_gitclone_application $application_gitclone_application_destination",
@@ -26,6 +26,14 @@ class application::gitclone_db {
 	exec { "symlink-for-files-folder":
 		command => "ln -s $application_symlink_files_folder_source $application_symlink_files_folder_destination",
 		require => Exec["gitclone-application"],
+}
+	exec { "edit-apache2-conf-file":
+		command => "sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/sites-available/default",
+        require => Package["apache2"]
+}
+	exec { "edit-documentRoot-folder-path":
+        command => "/etc/puppet/modules/application/scripts/edit-documentRoot-folder-path.sh $application_apache_default_documentroot $application_apache_current_documentroot",
+        require => Package["apache2"]
 }
 }
 
