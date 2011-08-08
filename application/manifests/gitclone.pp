@@ -8,7 +8,7 @@ class application::gitclonedb {
 		before => Exec ["db-restore"]
 }
 }
-class application::gitcloneapp
+class application::gitcloneapp {
 	exec { "gitclone-application":
 		command => "git clone $application_drupal_gitclone_application $application_drupal_gitclone_application_destination",
 		require => Exec ["gitclone-db"]
