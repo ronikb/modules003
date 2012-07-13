@@ -7,3 +7,5 @@ cd /etc/puppet
 sudo git clone git@github.com:ronikb/modules.git
 move nodes.pp file from this repository to /etc/puppet/manifests/
 Then run nodes.pp 
+
+Added bu roni
